@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermelon Details</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Apple image and details section */
+        .product-detail {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Make space between image and text */
+            margin-bottom: 40px;
+        }
+
+        .image-section {
+            flex: 1;
+            margin-right: 30px; /* Reduce space between image and text */
+        }
+
+        .image-section img {
+            width: 90%; /* Reduce the size of the apple image */
+            max-width: 400px; /* Set max width to avoid too large images */
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .description-section {
+            flex: 1.3; /* Give the text more space compared to the image */
+            margin-left: 20px; /* Space between text and the image */
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-subtitle {
+            font-style: italic;
+            color: gray;
+            margin-bottom: 20px;
+        }
+
+        .product-category {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Quick Info Section */
+        .quick-info-section {
+            margin-top: 40px;
+        }
+
+        .quick-info-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quick-info-items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            width: 150px;
+            text-align: center;
+            background-color: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            cursor: pointer; /* Change cursor to pointer */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        /* Hover effect */
+        .info-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box img {
+            width: 60px; /* Set the width */
+            height: 60px; /* Set the height to match the width */
+            margin-bottom: 10px;
+            object-fit: contain; /* Ensures the image fits within the box without being distorted */
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Centered vertically */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Adjusted width */
+            max-width: 400px; /* Maximum width for small screens */
+            border-radius: 10px;
+            text-align: center; /* Center text */
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px; /* Spacing between title and content */
+        }
+
+        .modal-content p {
+            margin-bottom: 10px; /* More spacing between paragraphs */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+            }
+
+            .quick-info-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-box {
+                width: 200px;
+            }
+
+            .modal-content {
+                width: 80%; /* Wider for mobile */
+                max-width: none; /* Remove max width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for Product Detail -->
+    <div class="container">
+        <!-- Product Detail Section -->
+        <div class="product-detail">
+            <!-- Image Section -->
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='images/WatermelonDetail.jpg') }}" alt="Watermelon Image">
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="description-section">
+                <h1 class="product-title">Watermelon</h1>
+                <h3 class="product-subtitle">Citrullus lanatus</h3>
+                <p class="product-category"><strong>Category:</strong> Melons/Squashes</p>
+
+                <p class="product-description">
+                    Everyone seems to love juicy watermelon in the summertime. Native to Africa, melons need warm temperatures (up to 80 degrees during the day) and a long growing season. Gardeners in colder climates can still have success in growing watermelon by starting seeds indoors and choosing short-season varieties. Days to maturity range from 70 to 90, depending on the variety.                
+                </p>
+            </div>
+        </div>
+
+        <!-- Quick Info Section -->
+        <div class="quick-info-section">
+            <h2 class="quick-info-title">Quick Info</h2>
+            <div class="quick-info-items">
+                <div class="info-box" onclick="openModal('info1')">
+                    <h4>Spacing</h4>
+                    <img src="{{ url_for('static', filename='images/WatermelonSqFt.png') }}" alt="Spacing">
+                    <p>2 Squares</p>
+                </div>
+                <div class="info-box" onclick="openModal('info2')">
+                    <h4>Soil Type</h4>
+                    <img src="{{ url_for('static', filename='images/SoilType.jpg') }}" alt="SoilType">
+                    <p>Loose, sandy, well-draining soil enriched with compost or organic matter</p>
+                </div>
+                <div class="info-box" onclick="openModal('info3')">
+                    <h4>Depth</h4>
+                    <img src="{{ url_for('static', filename='images/Depth.png') }}" alt="Depth">
+                    <p>1 inch deep</p>
+                </div>
+                <div class="info-box" onclick="openModal('info4')">
+                    <h4>Sun</h4>
+                    <img src="{{ url_for('static', filename='images/Sun.jpg') }}" alt="Sun">
+                    <p>Full Sun</p>
+                </div>
+                <div class="info-box" onclick="openModal('info5')">
+                    <h4>Water</h4>
+                    <img src="{{ url_for('static', filename='images/Water.png') }}" alt="Water">
+                    <p>1 in/week</p>
+                </div>
+                <div class="info-box" onclick="openModal('info6')">
+                    <h4>Germination</h4>
+                    <img src="{{ url_for('static', filename='images/Germination.png') }}" alt="Germination">
+                    <p>4-12 days</p>
+                </div>
+                <div class="info-box" onclick="openModal('info7')">
+                    <h4>Sprout to Harvest</h4>
+                    <img src="{{ url_for('static', filename='images/Harvest.png') }}" alt="Harvest">
+                    <p>2-3 months</p>
+                </div>
+                <div class="info-box" onclick="openModal('info8')">
+                    <h4>Season</h4>
+                    <img src="{{ url_for('static', filename='images/Season1.png') }}" alt="Season">
+                    <p>Warm</p>
+                </div>
+                <div class="info-box" onclick="openModal('info9')">
+                    <h4>Frost Resistance</h4>
+                    <img src="{{ url_for('static', filename='images/NotFrost.png') }}" alt="Frost">
+                    <p>Not-Tolerant</p>
+                </div>
+                <div class="info-box" onclick="openModal('info10')">
+                    <h4>Soil pH</h4>
+                    <img src="{{ url_for('static', filename='images/SoilPh.png') }}" alt="Soil pH">
+                    <p>Slightly Acidic to Neutral</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-info">
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Growing From Seed</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">If you live in warmer climates, you can direct sow seeds outdoors, but wait until the soil temperature warms to at least 70 degrees to avoid poor germination. If you live in colder climates, it is highly recommended to start your watermelon seedlings indoors. Transplant them to the garden 2-4 weeks after your last frost date.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Planting Considerations</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Amend soil with aged manure, seaweed, and/or compost before planting. Watermelons are heavy feeders. Watermelons prefer a soil pH between 6 and 6.8.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Feeding</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">If you choose to fertilize (and many do), make sure the fertilizer you choose delivers more nitrogen than phosphorus and potassium. However, after flowering begins, use a fertilizer with less nitrogen. We like to use liquid seaweed.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Harvest</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Watermelons don’t sweeten after they are picked, so harvest time is important. They generally ripen over two weeks, so keep your eye on them. Check the tendril. If it's green, wait. If it’s half-dead, the watermelon is nearly ripe or ripe. If the tendril is fully dead, it's ripe or overripe. It’s not going to get any riper, so you might as well pick! Stems should be cut with a sharp knife close to the fruit.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Storage</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Watermelons can be stored uncut for about 10 days. If cut, they can last in the refrigerator for about 4 days. Wrap tightly in plastic.</p>
+        </div>         
+
+        <!-- Modal for Detailed Information -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openModal(infoType) {
+            let content = '';
+            switch (infoType) {
+                case 'info1':
+                    content = '<h2>Plant Spacing</h2><p>Requires 3 to 5 feet apart in rows 6 to 8 feet apart.</p>';
+                    break;
+                case 'info2':
+                    content = '<h2>Soil Type</h2><p>Watermelons need warm, well-drained soil to support healthy root growth and provide the best fruit quality.</p>';
+                    break;
+                case 'info3':
+                    content = '<h2>Depth</h2><p>Plant seeds 1 inch deep.</p>';
+                    break;
+                case 'info4':
+                    content = '<h2>Sun</h2><p>Needs full sun (6+ hours per day).</p>';
+                    break;
+                case 'info5':
+                    content = '<h2>Water</h2><p>Requires 1 to 2 inches per week; keep soil consistently moist but not waterlogged.</p>';
+                    break;
+                case 'info6':
+                    content = '<h2>Germination</h2><p>Takes 4 to 12 days in warm temperatures (70-95°F).</p>';
+                    break;
+                case 'info7':
+                    content = '<h2>Sprout to Harvest</h2><p>Takes upto 2 to 3 months.</p>';
+                    break;
+                case 'info8':
+                    content = '<h2>Season</h2><p>Watermelon will grow well during warm weather.</p>';
+                    break;
+                case 'info9':
+                    content = '<h2>Frost</h2><p>Not frost-tolerant; requires warm temperatures to thrive.</p>';
+                    break;
+                case 'info10':
+                    content = '<h2>Soil pH</h2><p>Prefers slightly acidic to neutral soil (pH 6.0-6.8).</p>';
+                    break;
+            }
+            document.getElementById("modalContent").innerHTML = content;
+            document.getElementById("infoModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("infoModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("infoModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

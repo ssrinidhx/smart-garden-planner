@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Details</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Apple image and details section */
+        .product-detail {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Make space between image and text */
+            margin-bottom: 40px;
+        }
+
+        .image-section {
+            flex: 1;
+            margin-right: 30px; /* Reduce space between image and text */
+        }
+
+        .image-section img {
+            width: 90%; /* Reduce the size of the apple image */
+            max-width: 400px; /* Set max width to avoid too large images */
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .description-section {
+            flex: 1.3; /* Give the text more space compared to the image */
+            margin-left: 20px; /* Space between text and the image */
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-subtitle {
+            font-style: italic;
+            color: gray;
+            margin-bottom: 20px;
+        }
+
+        .product-category {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Quick Info Section */
+        .quick-info-section {
+            margin-top: 40px;
+        }
+
+        .quick-info-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quick-info-items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            width: 150px;
+            text-align: center;
+            background-color: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            cursor: pointer; /* Change cursor to pointer */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        /* Hover effect */
+        .info-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box img {
+            width: 60px; /* Set the width */
+            height: 60px; /* Set the height to match the width */
+            margin-bottom: 10px;
+            object-fit: contain; /* Ensures the image fits within the box without being distorted */
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Centered vertically */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Adjusted width */
+            max-width: 400px; /* Maximum width for small screens */
+            border-radius: 10px;
+            text-align: center; /* Center text */
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px; /* Spacing between title and content */
+        }
+
+        .modal-content p {
+            margin-bottom: 10px; /* More spacing between paragraphs */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+            }
+
+            .quick-info-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-box {
+                width: 200px;
+            }
+
+            .modal-content {
+                width: 80%; /* Wider for mobile */
+                max-width: none; /* Remove max width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for Product Detail -->
+    <div class="container">
+        <!-- Product Detail Section -->
+        <div class="product-detail">
+            <!-- Image Section -->
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='images/AppleDetail.jpg') }}" alt="Apple Image">
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="description-section">
+                <h1 class="product-title">Apple</h1>
+                <h3 class="product-subtitle">Malus domestica</h3>
+                <p class="product-category"><strong>Category:</strong> Fruit</p>
+
+                <p class="product-description">
+                    Apples are one of the most commonly grown fruit trees. They make an excellent snack on their own, and also take well to cooking and canning for long-term storage.
+                    There are a myriad of different apple varieties suited for different climates and culinary uses. It is worth noting that apples are one of the most pest-susceptible fruits,
+                    so some form of pesticide use is almost always necessary.
+                </p>
+            </div>
+        </div>
+
+        <!-- Quick Info Section -->
+        <div class="quick-info-section">
+            <h2 class="quick-info-title">Quick Info</h2>
+            <div class="quick-info-items">
+                <div class="info-box" onclick="openModal('info1')">
+                    <h4>Spacing</h4>
+                    <img src="{{ url_for('static', filename='images/AppleSqFt.png') }}" alt="Spacing">
+                    <p>100 Squares</p>
+                </div>
+                <div class="info-box" onclick="openModal('info2')">
+                    <h4>Soil Type</h4>
+                    <img src="{{ url_for('static', filename='images/SoilType.jpg') }}" alt="SoilType">
+                    <p>Loose, well-draining loam</p>
+                </div>
+                <div class="info-box" onclick="openModal('info3')">
+                    <h4>Depth</h4>
+                    <img src="{{ url_for('static', filename='images/Depth.png') }}" alt="Depth">
+                    <p>1/2 inch deep</p>
+                </div>
+                <div class="info-box" onclick="openModal('info4')">
+                    <h4>Sun</h4>
+                    <img src="{{ url_for('static', filename='images/Sun.jpg') }}" alt="Sun">
+                    <p>Full Sun</p>
+                </div>
+                <div class="info-box" onclick="openModal('info5')">
+                    <h4>Water</h4>
+                    <img src="{{ url_for('static', filename='images/Water.png') }}" alt="Water">
+                    <p>1 in/week</p>
+                </div>
+                <div class="info-box" onclick="openModal('info6')">
+                    <h4>Germination</h4>
+                    <img src="{{ url_for('static', filename='images/Germination.png') }}" alt="Germination">
+                    <p>2-4 Weeks</p>
+                </div>
+                <div class="info-box" onclick="openModal('info7')">
+                    <h4>Sprout to Harvest</h4>
+                    <img src="{{ url_for('static', filename='images/Harvest.png') }}" alt="Harvest">
+                    <p>3-6 Years</p>
+                </div>
+                <div class="info-box" onclick="openModal('info8')">
+                    <h4>Season</h4>
+                    <img src="{{ url_for('static', filename='images/Season2.png') }}" alt="Season">
+                    <p>Perennial</p>
+                </div>
+                <div class="info-box" onclick="openModal('info9')">
+                    <h4>Frost Resistance</h4>
+                    <img src="{{ url_for('static', filename='images/Frost.jpg') }}" alt="Frost">
+                    <p>Tolerant</p>
+                </div>
+                <div class="info-box" onclick="openModal('info10')">
+                    <h4>Soil pH</h4>
+                    <img src="{{ url_for('static', filename='images/SoilPh.png') }}" alt="Soil pH">
+                    <p>Slightly Acidic</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-info">
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Growing From Seed</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Most home gardeners do not grow apples from seeds. Apple trees grown from seed are often vastly different from their parent plant, and can take 8-10 years to grow to full size.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Planting Considerations</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Climate is an important factor when selecting apple varieties suitable for your region. Apple trees described as “hardy” grow best in USDA Hardiness Zones 3-5. “Long-season” varieties are best for USDA Hardiness Zones 5-8. In most regions, apple trees should be planted in the spring. In USDA Hardiness Zones of 7 or greater, apple trees can also be planted in the fall. Most apples need to cross-pollinate in order to produce fruit. This means you must grow at least two apple trees of different cultivars for the trees to produce fruit. Additionally, the two trees must have approximately the same flowering time.</p>
+            <p style="margin-bottom: 20px; line-height: 1.8;">To plant an apple tree, dig a hole that is twice the width of the tree’s root spread and 2 feet deep. Gently spread the tree roots loose and lower the tree into the hole. Gradually replace the soil around the root system. Try to fill in any air pockets by gently tamping the soil. Mulch around the base of the tree to prevent weeds.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Feeding</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Do not add fertilizer at planting time. Apple trees generally require minimal fertilization. Nitrogen can be added through a yearly application of compost.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Harvest</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Harvest apples in the fall when their main color is no longer green. This can be anywhere from August to October, depending on both climate and apple variety. The apples should easily break from the branch with a gentle twist.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Storage</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Early season apples do not store well. Mid-late season apples can store anywhere from a few weeks to a few months in a root cellar. Do not store apples with visible bruises or blemishes, as they will quickly rot. When storing apples, wrap them in paper and place them onto trays that allow good air circulation. Keep the trays in a cool, dark area. Overripe apples can be used for cooking and canning.</p>
+        </div>         
+
+        <!-- Modal for Detailed Information -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openModal(infoType) {
+            let content = '';
+            switch (infoType) {
+                case 'info1':
+                    content = '<h2>Plant Spacing</h2><p>Requires 12 to 15 feet apart in rows 15 to 20 feet apart.</p>';
+                    break;
+                case 'info2':
+                    content = '<h2>Soil Type</h2><p>Apples grow best in rich, well-draining loam soil with good moisture retention and aeration.</p>';
+                    break;
+                case 'info3':
+                    content = '<h2>Depth</h2><p>Plant seeds 1/2 inch deep or grafted trees at the same depth as their nursery containers.</p>';
+                    break;
+                case 'info4':
+                    content = '<h2>Sun</h2><p>Needs full sun (6+ hours per day).</p>';
+                    break;
+                case 'info5':
+                    content = '<h2>Water</h2><p>Requires 1 to 2 inches per week; keep soil consistently moist but not waterlogged.</p>';
+                    break;
+                case 'info6':
+                    content = '<h2>Germination</h2><p>Takes 2 to 4 weeks in cool temperatures (60-70°F).</p>';
+                    break;
+                case 'info7':
+                    content = '<h2>Sprout to Harvest</h2><p>Takes 3 to 6 years (from seed to fruit-bearing tree).</p>';
+                    break;
+                case 'info8':
+                    content = '<h2>Season</h2><p> Perennial; best planting in late fall or early spring.</p>';
+                    break;
+                case 'info9':
+                    content = '<h2>Frost</h2><p> Moderate frost tolerance; requires winter chill for best fruit set.</p>';
+                    break;
+                case 'info10':
+                    content = '<h2>Soil pH</h2><p>Prefers slightly acidic soil (pH 6.0-6.5).</p>';
+                    break;
+            }
+            document.getElementById("modalContent").innerHTML = content;
+            document.getElementById("infoModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("infoModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("infoModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

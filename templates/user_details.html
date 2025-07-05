@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <!-- Link to Bootstrap CSS and JS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Fullscreen background image */
+        body {
+            background: url("") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: black;
+            font-size: 2rem;
+            font-family: 'Lobster', cursive;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        /* Centering container in the middle of the screen */
+        .user-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .user-details p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            margin: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        .btn-mainpage {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-logout {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        /* Enhancing the modal box */
+        .modal-content {
+            background: linear-gradient(145deg, #fdfbfb, #ebedee);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            border-bottom: none;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-header h5 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            border-top: none;
+        }
+
+        .modal-footer .btn {
+            width: 120px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .modal-footer .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .modal-footer .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='images/Logo1.png') }}" alt="Logo">
+            Sproutify
+        </div>
+    </nav>
+    <div class="user-container">
+        <h1>Welcome, {{ user['name'] }}!</h1> <!-- Welcome message with user's name -->
+
+        <div class="user-details">
+            <p><strong>Email:</strong> {{ user['email'] }}</p>
+            <p><strong>Country:</strong> {{ user['country'] }}</p>
+            <p><strong>State:</strong> {{ user['state'] }}</p>
+            <p><strong>City:</strong> {{ user['city'] }}</p>
+        </div>
+
+        <a href="{{ url_for('mainpage') }}" class="btn btn-mainpage">Back to Main Page</a>
+        <button class="btn btn-logout" data-toggle="modal" data-target="#logoutModal">Logout</button>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

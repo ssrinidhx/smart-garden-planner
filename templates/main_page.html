@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sproutify: Your guide to effortless and sustainable gardening. Find plants, fruits, vegetables, and more.">
+    <title>Sproutify Main Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            scroll-behavior: smooth;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            background-color: white;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: black;
+            font-size: 2rem;
+            font-family: 'Lobster', cursive;
+        }
+        .navbar-brand img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .navbar .nav-link {
+            color: black !important;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .navbar-nav {
+            margin-left: 20px;
+        }
+        .navbar .btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar .btn:hover {
+            background-color: #218838;
+            box-shadow: 0px 4px 15px rgba(40, 167, 69, 0.6);
+        }
+        body {
+            display: flex;
+            flex-direction: column; 
+            height: 100%; 
+            margin: 0; 
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        .category-section {
+            margin: 30px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+        .grid-item {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                cursor: pointer;
+                padding: 20px;
+                text-align: center; 
+        }
+        .grid-item img {
+            width: 100%;
+            height: 150px; 
+            object-fit: cover; 
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .grid-item p {
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #000; 
+        }
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background-color: #f0f0f0; 
+        }
+        .grid-item a {
+            text-decoration: none;
+        }
+        .grid-item a:hover,
+        .grid-item a:focus,
+        .grid-item a:active {
+            text-decoration: none; 
+        }
+        .caption-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .caption-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .caption-section p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        section {
+            padding: 80px 20px;
+            background-color: #f9f9f9; 
+            width: 103.28%; 
+            position: relative; 
+            left: 49.95%;
+            right: 50%;
+            margin-left: -50vw; 
+            margin-right: -45vw; 
+            text-align: center;
+            box-sizing: border-box; 
+        }
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        section p {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+        .user-icon {
+            width: 90px;
+            height: 70px; 
+            cursor: pointer; 
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1; 
+        }
+        .search-container input[type="text"] {
+            width: 350px; 
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-right: 10px; 
+        }
+        .search-container button {
+            padding: 10px 50px;
+            border-radius: 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-container button:hover {
+            background-color: #218838; 
+        }
+	    .main-content {
+            flex: 1;
+            padding: 0 20px; 
+        }
+        .centered-result-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            flex-wrap: wrap;         
+            padding: 20px;
+            margin-top: 10px;    
+            position: relative;     
+            top: -180px !important; 
+            gap: 20px;
+            padding-top: 200px;      
+        }
+        .centered-result-container .grid-item {
+            margin: 10px;
+        }
+        .no-results {
+            display: none; 
+            text-align: center;
+            font-size: 1.2rem; 
+            top: -550px !important; 
+            font-size: x-large;
+            padding: 20px;
+            margin-top: 10px;   
+            position: relative; 
+        }
+        .dropdown-toggle img {
+            vertical-align: middle; 
+            width: 24px;
+            height: 24px; 
+        }
+        .no-arrow::after {
+            display: none; 
+        }
+        .dropdown-item{
+            border-radius: 20px;
+        }
+        .search-container button,
+        .sort-button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: normal;
+        }
+        .search-container button:hover,
+        .sort-button:hover {
+            background-color: #218838;
+        }
+        .filter-button {
+            background-color: #66bb6a;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .filter-dropdown {
+            min-width: 200px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            background-color: #fff;
+            z-index: 1000;
+        }
+        .filter-dropdown .dropdown-header {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin: 5px 0;
+            padding: 0;
+        }
+        .filter-dropdown .dropdown-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            padding: 5px 0;
+            color: #555;
+        }
+        .filter-dropdown .dropdown-item input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: #66bb6a;
+        }
+        .apply-filter-button1 {
+            background-color: #28a745 !important;
+            color: #fff !important; 
+            border: none !important;
+            padding: 10px !important;
+            font-size: 14px !important;
+            border-radius: 4px !important;
+            text-align: center !important;
+            cursor: pointer !important;
+            width: calc(100% - 20px) !important; 
+            margin: 10px auto !important;
+            display: block !important; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='images/Logo1.png') }}" alt="Logo">
+            Sproutify
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('search') }}">Plants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('tools') }}">Tools</a>
+                </li>
+            </ul>
+        </div>
+        <div class="search-container">
+            <form id="searchForm" action="{{ url_for('search') }}" method="GET">
+                <input type="text" name="plant" placeholder="Search for a plant..." required>
+                <button type="submit">Search</button>
+            </form>
+            <div class="dropdown" style="display: inline-block; margin-left: 10px;">
+                <button class="sort-button dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort
+                </button>
+                <div class="dropdown-menu" aria-labelledby="sortDropdown">
+                    <a class="dropdown-item" href="#" id="sortByName">Sort by Name</a>
+                    <a class="dropdown-item" href="#" id="sortByCategory">Sort by Category</a>
+                </div>
+            </div>
+        </div>        
+        <div class="ml-auto">
+            <a href="{{ url_for('userdetails')}}">
+                <img src="{{ url_for('static', filename='images/Usericon1.jpg') }}" alt="Sign Up" class="user-icon">
+            </a>
+        </div>
+    </nav>
+   <div class="main-content"> <!-- Add this wrapper -->
+        <section class="caption-section">
+            <h1>Welcome to Sproutify</h1>
+            <p>Find the perfect plants for your garden!</p>
+        </section>
+        <div class="category" id="alliums">
+            <h2>Alliums</h2>
+            <div class="category-section">
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <a href="{{ url_for('garlic')}}">
+                            <img src="{{ url_for('static', filename='images/Garlic.jpg') }}" loading="lazy" alt="Garlic">
+                            <p>Garlic</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="{{ url_for('onions')}}">
+                            <img src="{{ url_for('static', filename='images/Onions.jpg') }}" loading="lazy" alt="Onions">
+                            <p>Onions</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="colecrops">
+        <h2>Cole Crops</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('broccoli')}}">
+                        <img src="{{ url_for('static', filename='images/Broccoli.jpg') }}" loading="lazy" alt="Broccoli">
+                        <p>Broccoli</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('cabbage')}}">
+                        <img src="{{ url_for('static', filename='images/Cabbage.jpg') }}" loading="lazy" alt="Cabbage">
+                        <p>Cabbage</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('cauliflower')}}">
+                        <img src="{{ url_for('static', filename='images/Cauliflower.jpg') }}" loading="lazy" alt="Cauliflower">
+                        <p>Cauliflower</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="flowers">
+        <h2>Flowers</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('cosmos')}}">
+                        <img src="{{ url_for('static', filename='images/Cosmos.jpg') }}" loading="lazy" alt="Cosmos">
+                        <p>Cosmos</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('daffodils')}}">
+                        <img src="{{ url_for('static', filename='images/Daffodils.jpg') }}" loading="lazy" alt="Daffodils">
+                        <p>Daffodils</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('lavender')}}">
+                        <img src="{{ url_for('static', filename='images/Lavender.jpg') }}" loading="lazy" alt="Lavender">
+                        <p>Lavender</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('lilies')}}">
+                        <img src="{{ url_for('static', filename='images/Lilies.jpg') }}" loading="lazy" alt="Lilies">
+                        <p>Lilies</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('marigold')}}">
+                        <img src="{{ url_for('static', filename='images/Marigold.jpg') }}" loading="lazy" alt="Marigold">
+                        <p>Marigold</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('rose')}}">
+                        <img src="{{ url_for('static', filename='images/Rose.jpg') }}" loading="lazy" alt="Rose">
+                        <p>Rose</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('sunflower')}}">
+                        <img src="{{ url_for('static', filename='images/Sunflower.jpg') }}" loading="lazy" alt="Sunflower">
+                        <p>Sunflower</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('tulip')}}">
+                        <img src="{{ url_for('static', filename='images/Tulips.jpg') }}" loading="lazy" alt="Tulips">
+                        <p>Tulips</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="fruits">
+        <h2>Fruits</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('apple')}}">
+                        <img src="{{ url_for('static', filename='images/Apple.webp') }}" loading="lazy" alt="Apples">
+                        <p>Apples</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('blueberries')}}">
+                        <img src="{{ url_for('static', filename='images/Blueberries.jpg') }}" loading="lazy" alt="Blueberries">
+                        <p>Blueberries</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('grapes')}}">
+                        <img src="{{ url_for('static', filename='images/Grapes.jpg') }}" loading="lazy" alt="Grapes">
+                        <p>Grapes</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('orange')}}">
+                        <img src="{{ url_for('static', filename='images/Orange.jpg') }}" loading="lazy" alt="Oranges">
+                        <p>Oranges</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('strawberries')}}">
+                        <img src="{{ url_for('static', filename='images/Strawberry.jpeg') }}" loading="lazy" alt="Strawberries">
+                        <p>Strawberries</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="greens">
+        <h2>Greens</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('lettuce')}}">
+                        <img src="{{ url_for('static', filename='images/Lettuce.jpg') }}" loading="lazy" alt="Lettuce">
+                        <p>Lettuce</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('spinach')}}">
+                        <img src="{{ url_for('static', filename='images/Spinach.jpg') }}" loading="lazy" alt="Spinach">
+                        <p>Spinach</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="herbs">
+        <h2>Herbs</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('basil')}}">
+                        <img src="{{ url_for('static', filename='images/Basil.jpg') }}" loading="lazy" alt="Basil">
+                        <p>Basil</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('ginger')}}">
+                        <img src="{{ url_for('static', filename='images/Ginger.jpg') }}" loading="lazy" alt="Ginger">
+                        <p>Ginger</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('mint')}}">
+                        <img src="{{ url_for('static', filename='images/Mint.jpg') }}" loading="lazy" alt="Mint">
+                        <p>Mint</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('mustard')}}">
+                        <img src="{{ url_for('static', filename='images/Mustard.jpg') }}" loading="lazy" alt="Mustard">
+                        <p>Mustard</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('parsley')}}">
+                        <img src="{{ url_for('static', filename='images/Parsley.jpg') }}" loading="lazy" alt="Parsley">
+                        <p>Parsley</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('rosemary')}}">
+                        <img src="{{ url_for('static', filename='images/Rosemary.jpg') }}" loading="lazy" alt="Rosemary">
+                        <p>Rosemary</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="legumes">
+    <h2>Legumes</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('beans')}}">
+                        <img src="{{ url_for('static', filename='images/Beans.jpg') }}" loading="lazy" alt="Beans">
+                        <p>Beans</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('peanut')}}">
+                        <img src="{{ url_for('static', filename='images/Peanuts.jpg') }}" loading="lazy" alt="Peanuts">
+                        <p>Peanuts</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('peas')}}">
+                        <img src="{{ url_for('static', filename='images/Peas.jpg') }}" loading="lazy" alt="Peas">
+                        <p>Peas</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category" id="melons/squashes">
+        <h2>Melons/Squashes</h2>
+            <div class="category-section">
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <a href="{{ url_for('cucumber')}}">
+                            <img src="{{ url_for('static', filename='images/Cucumber.jpg') }}" loading="lazy" alt="Cucumber">
+                            <p>Cucumber</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="{{ url_for('pumpkin')}}">
+                            <img src="{{ url_for('static', filename='images/Pumpkin.jpg') }}" loading="lazy" alt="Pumpkin">
+                            <p>Pumpkin</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="{{ url_for('watermelon')}}">
+                            <img src="{{ url_for('static', filename='images/Watermelon.jpg') }}" loading="lazy" alt="Watermelon">
+                            <p>Watermelon</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="category" id="nightshades">
+            <h2>Nightshades</h2>
+                <div class="category-section">
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <a href="{{ url_for('bellpepper')}}">
+                                <img src="{{ url_for('static', filename='images/BellPepper.jpg') }}" loading="lazy" alt="Bell Pepper">
+                                <p>Bell Pepper</p>
+                            </a>
+                        </div>
+                        <div class="grid-item">
+                            <a href="{{ url_for('tomatoes')}}">
+                                <img src="{{ url_for('static', filename='images/Tomatoes.jpg') }}" loading="lazy" alt="Tomatoes">
+                                <p>Tomatoes</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="category" id="other">
+                <h2>Other Vegetables</h2>
+                    <div class="category-section">
+                        <div class="grid-container">
+                            <div class="grid-item">
+                                <a href="{{ url_for('asparagus')}}">
+                                    <img src="{{ url_for('static', filename='images/Asparagus.jpg') }}" loading="lazy" alt="Asparagus">
+                                    <p>Asparagus</p>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="{{ url_for('corn')}}">
+                                    <img src="{{ url_for('static', filename='images/Corn.jpg') }}" loading="lazy" alt="Corn">
+                                    <p>Corn</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <div class="category" id="roots">
+        <h2>Roots</h2>
+        <div class="category-section">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="{{ url_for('beetroot')}}">
+                        <img src="{{ url_for('static', filename='images/Beetroot.jpg') }}" loading="lazy" alt="Beetroot">
+                        <p>Beetroot</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('carrots')}}">
+                        <img src="{{ url_for('static', filename='images/Carrot.jpg') }}" loading="lazy" alt="Carrots">
+                        <p>Carrots</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('potatoes')}}">
+                        <img src="{{ url_for('static', filename='images/Potato.jpg') }}" loading="lazy" alt="Potatoes">
+                        <p>Potatoes</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a href="{{ url_for('radish')}}">
+                        <img src="{{ url_for('static', filename='images/Radish.jpg') }}" loading="lazy" alt="Radish">
+                        <p>Radish</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="centered-result-container"></div>
+<div class="no-results" style="display: none;">No results found.</div>
+<script>
+    document.querySelector('#searchForm').addEventListener('submit', function (e) {
+        e.preventDefault(); 
+        const searchTerm = document.querySelector('input[name="plant"]').value.toLowerCase();
+        const categories = document.querySelectorAll('.category'); 
+        document.querySelector('.caption-section').style.display = 'none';
+        let foundAnyItems = false; 
+        let centeredContainer = document.querySelector('.centered-result-container');
+        centeredContainer.innerHTML = ''; 
+        const isSortedByName = document.querySelector('.sorted-section') !== null;
+        if (isSortedByName) {
+            const gridItems = document.querySelectorAll('.sorted-section .grid-item');
+            gridItems.forEach(item => {
+                const plantName = item.querySelector('p').textContent.toLowerCase();
+                if (plantName.includes(searchTerm)) {
+                    const clonedItem = item.cloneNode(true);
+                    clonedItem.style.display = 'block'; 
+                    centeredContainer.appendChild(clonedItem);
+                    foundAnyItems = true;
+                }
+            });
+            document.querySelector('.sorted-section').style.display = 'none';
+        } else {
+            categories.forEach(category => {
+                const gridItems = category.querySelectorAll('.grid-item');
+                gridItems.forEach(item => {
+                    const plantName = item.querySelector('p').textContent.toLowerCase();
+                    if (plantName.includes(searchTerm)) {
+                        const clonedItem = item.cloneNode(true);
+                        clonedItem.style.display = 'block'; 
+                        centeredContainer.appendChild(clonedItem);
+                        foundAnyItems = true;
+                    }
+                });
+                category.style.display = 'none';
+            });
+        }
+        const noResultsMessage = document.querySelector('.no-results');
+        if (!foundAnyItems) {
+            noResultsMessage.style.display = 'block'; 
+        } else {
+            noResultsMessage.style.display = 'none'; 
+        }
+    });
+    document.querySelector('input[name="plant"]').addEventListener('input', function () {
+        const searchTerm = this.value.trim();
+        if (searchTerm === '') {
+            const categories = document.querySelectorAll('.category');
+            const centeredContainer = document.querySelector('.centered-result-container');
+            centeredContainer.innerHTML = '';
+            document.querySelector('.caption-section').style.display = 'block';
+            document.querySelector('.no-results').style.display = 'none';
+            const sortedSection = document.querySelector('.sorted-section');
+            if (sortedSection) {
+                sortedSection.style.display = 'block';
+                categories.forEach(category => category.style.display = 'none');
+            } else {
+                categories.forEach(category => {
+                    category.style.display = 'block';
+                    const gridItems = category.querySelectorAll('.grid-item');
+                    gridItems.forEach(item => {
+                        item.style.display = 'block'; 
+                    });
+                });
+            }
+        }
+    });
+    document.getElementById('sortByName').addEventListener('click', function() {
+        sortItems('name');
+    });
+    document.getElementById('sortByCategory').addEventListener('click', function() {
+        location.reload();  
+    });
+    function sortItems(sortBy) {
+        const categories = document.querySelectorAll('.category');
+        const existingSortedSection = document.querySelector('.sorted-section');
+        if (existingSortedSection) {
+            existingSortedSection.remove();
+        }
+        if (sortBy === 'name') {
+            categories.forEach(category => {
+                category.style.display = 'none';
+            });
+            const allPlantsContainer = document.createElement('div');
+            allPlantsContainer.className = 'grid-container';
+            const allPlants = []; 
+            categories.forEach(category => {
+                const gridItems = Array.from(category.querySelectorAll('.grid-item'));
+                allPlants.push(...gridItems); 
+            });
+            allPlants.sort((a, b) => {
+                const nameA = a.querySelector('p').textContent.toLowerCase();
+                const nameB = b.querySelector('p').textContent.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+            allPlants.forEach(item => allPlantsContainer.appendChild(item));
+            const sortedSection = document.createElement('div');
+            sortedSection.className = 'sorted-section';
+            sortedSection.appendChild(allPlantsContainer);
+            document.querySelector('.main-content').appendChild(sortedSection);
+        } else if (sortBy === 'category') {
+            categories.forEach(category => {
+                category.style.display = 'block';
+            });
+        }
+    }
+</script>
+</body>
+</html>

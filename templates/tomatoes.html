@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomatoes Details</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Apple image and details section */
+        .product-detail {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Make space between image and text */
+            margin-bottom: 40px;
+        }
+
+        .image-section {
+            flex: 1;
+            margin-right: 30px; /* Reduce space between image and text */
+        }
+
+        .image-section img {
+            width: 90%; /* Reduce the size of the apple image */
+            max-width: 400px; /* Set max width to avoid too large images */
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .description-section {
+            flex: 1.3; /* Give the text more space compared to the image */
+            margin-left: 20px; /* Space between text and the image */
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-subtitle {
+            font-style: italic;
+            color: gray;
+            margin-bottom: 20px;
+        }
+
+        .product-category {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Quick Info Section */
+        .quick-info-section {
+            margin-top: 40px;
+        }
+
+        .quick-info-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quick-info-items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            width: 150px;
+            text-align: center;
+            background-color: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            cursor: pointer; /* Change cursor to pointer */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        /* Hover effect */
+        .info-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box img {
+            width: 60px; /* Set the width */
+            height: 60px; /* Set the height to match the width */
+            margin-bottom: 10px;
+            object-fit: contain; /* Ensures the image fits within the box without being distorted */
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Centered vertically */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Adjusted width */
+            max-width: 400px; /* Maximum width for small screens */
+            border-radius: 10px;
+            text-align: center; /* Center text */
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px; /* Spacing between title and content */
+        }
+
+        .modal-content p {
+            margin-bottom: 10px; /* More spacing between paragraphs */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+            }
+
+            .quick-info-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-box {
+                width: 200px;
+            }
+
+            .modal-content {
+                width: 80%; /* Wider for mobile */
+                max-width: none; /* Remove max width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for Product Detail -->
+    <div class="container">
+        <!-- Product Detail Section -->
+        <div class="product-detail">
+            <!-- Image Section -->
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='images/TomatoesDetail.jpg') }}" alt="Tomatoes Image">
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="description-section">
+                <h1 class="product-title">Tomatoes</h1>
+                <h3 class="product-subtitle">Solanum lycopersicum</h3>
+                <p class="product-category"><strong>Category:</strong> Nightshades</p>
+
+                <p class="product-description">
+                    Tomatoes are a favorite garden vegetable. (Yes, we technically eat the fruit of the tomato plant, but it's used as a vegetable in eating and cooking and, thus, usually categorized in vegetables.) This vine plant is fairly easy to grow and will produce a bumper crop with proper care. Its uses are versatile, however, tomatoes are susceptible to a range of pests and diseases.                </p>
+            </div>
+        </div>
+
+        <!-- Quick Info Section -->
+        <div class="quick-info-section">
+            <h2 class="quick-info-title">Quick Info</h2>
+            <div class="quick-info-items">
+                <div class="info-box" onclick="openModal('info1')">
+                    <h4>Spacing</h4>
+                    <img src="{{ url_for('static', filename='images/TomatoesSqFt.png') }}" alt="Spacing">
+                    <p>4 Squares</p>
+                </div>
+                <div class="info-box" onclick="openModal('info2')">
+                    <h4>Soil Type</h4>
+                    <img src="{{ url_for('static', filename='images/SoilType.jpg') }}" alt="SoilType">
+                    <p>Well-draining, loamy soil rich in organic matter</p>
+                </div>
+                <div class="info-box" onclick="openModal('info3')">
+                    <h4>Depth</h4>
+                    <img src="{{ url_for('static', filename='images/Depth.png') }}" alt="Depth">
+                    <p>1/4 inch deep</p>
+                </div>
+                <div class="info-box" onclick="openModal('info4')">
+                    <h4>Sun</h4>
+                    <img src="{{ url_for('static', filename='images/Sun.jpg') }}" alt="Sun">
+                    <p>Full Sun</p>
+                </div>
+                <div class="info-box" onclick="openModal('info5')">
+                    <h4>Water</h4>
+                    <img src="{{ url_for('static', filename='images/Water.png') }}" alt="Water">
+                    <p>1 in/week</p>
+                </div>
+                <div class="info-box" onclick="openModal('info6')">
+                    <h4>Germination</h4>
+                    <img src="{{ url_for('static', filename='images/Germination.png') }}" alt="Germination">
+                    <p>5-10 days</p>
+                </div>
+                <div class="info-box" onclick="openModal('info7')">
+                    <h4>Sprout to Harvest</h4>
+                    <img src="{{ url_for('static', filename='images/Harvest.png') }}" alt="Harvest">
+                    <p>2-3 months</p>
+                </div>
+                <div class="info-box" onclick="openModal('info8')">
+                    <h4>Season</h4>
+                    <img src="{{ url_for('static', filename='images/Season1.png') }}" alt="Season">
+                    <p>Warm</p>
+                </div>
+                <div class="info-box" onclick="openModal('info9')">
+                    <h4>Frost Resistance</h4>
+                    <img src="{{ url_for('static', filename='images/NotFrost.png') }}" alt="Frost">
+                    <p>Not-Tolerant</p>
+                </div>
+                <div class="info-box" onclick="openModal('info10')">
+                    <h4>Soil pH</h4>
+                    <img src="{{ url_for('static', filename='images/SoilPh.png') }}" alt="Soil pH">
+                    <p>Slightly Acidic</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-info">
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Growing From Seed</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Tomatoes are best started indoors in flats. When the first true leaves develop, it is time to transplant.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Planting Considerations</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Tomatoes can be either determinate(bush) or indeterminate(climbing) varieties. Determinate varieties can be grown without support, can be planted about 2 feet apart, and they typically yield all of their fruit in the span of a few weeks. Indeterminate varieties should be staked, trellised, or caged, and pruned for optimal yields, and should be planted around 3 feet apart. They yield their fruit over a more extended time period. Tomatoes make great neighbors for basil plants in the garden.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Feeding</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Water seedlings with a high-phosphate fertilizer solution for best results.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Harvest</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Leave your tomatoes on the vine as long as possible. The perfect tomato for picking will be firm and very red in color, regardless of size, with perhaps some yellow remaining around the stem. A ripe tomato will be only slightly soft. Pick at the base of the stem.</p>
+        
+            <h3 style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px; margin-top: 20px;">Storage</h3>
+            <p style="margin-bottom: 20px; line-height: 1.8;">Never refrigerate whole fresh tomatoes. Doing so spoils the flavor and texture that make up that garden tomato taste. Store whole tomatoes at room temperature, stem side down to reduce bruising. Cut tomatoes should be stored in the fridge to prevent bacterial growth, with the cut side wrapped tightly in plastic wrap.</p>
+        </div>         
+
+        <!-- Modal for Detailed Information -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openModal(infoType) {
+            let content = '';
+            switch (infoType) {
+                case 'info1':
+                    content = '<h2>Plant Spacing</h2><p>Requires 18 to 24 inches apart in rows 36 to 48 inches apart.</p>';
+                    break;
+                case 'info2':
+                    content = '<h2>Soil Type</h2><p>Tomatoes grow best in nutrient-dense soil that retains moisture yet drains well, supporting robust growth and high fruit yield.</p>';
+                    break;
+                case 'info3':
+                    content = '<h2>Depth</h2><p>Plant seeds 1/4 inch deep; transplant seedlings up to first true leaves.</p>';
+                    break;
+                case 'info4':
+                    content = '<h2>Sun</h2><p>Needs full sun (6+ hours per day).</p>';
+                    break;
+                case 'info5':
+                    content = '<h2>Water</h2><p>Requires 1 to 2 inches per week; keep soil consistently moist, especially during fruiting.</p>';
+                    break;
+                case 'info6':
+                    content = '<h2>Germination</h2><p>Takes 5 to 10 days in warm temperatures (70-80°F).</p>';
+                    break;
+                case 'info7':
+                    content = '<h2>Sprout to Harvest</h2><p>Takes upto 2 to 3 months.</p>';
+                    break;
+                case 'info8':
+                    content = '<h2>Season</h2><p>Tomatoes will grow well during warm weather.</p>';
+                    break;
+                case 'info9':
+                    content = '<h2>Frost</h2><p>Not frost-tolerant; requires warm temperatures to thrive.</p>';
+                    break;
+                case 'info10':
+                    content = '<h2>Soil pH</h2><p>Prefers slightly acidic soil (pH 6.0-6.8).</p>';
+                    break;
+            }
+            document.getElementById("modalContent").innerHTML = content;
+            document.getElementById("infoModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("infoModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("infoModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

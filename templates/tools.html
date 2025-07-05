@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sproutify: Your guide to effortless and sustainable gardening. Find plants, fruits, vegetables, and more.">
+    <title>Sproutify Main Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+</head>
+<style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            scroll-behavior: smooth;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .navbar {
+            background-color: white;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: black;
+            font-size: 2rem;
+            font-family: 'Lobster', cursive;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .navbar-nav {
+            margin-left: 20px;
+        }
+
+        .navbar .nav-link {
+            color: black !important;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .navbar .btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar .btn:hover {
+            background-color: #218838;
+            box-shadow: 0px 4px 15px rgba(40, 167, 69, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+        .user-icon {
+            width: 90px; /* Adjust the width of the image */
+            height: 70px; /* Adjust the height of the image */
+            cursor: pointer; /* Show pointer on hover */
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .tool-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tool-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .tool-item h3 {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Popup modal styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .popup-content h3 {
+            margin-top: 15px;
+        }
+
+        .popup-content p {
+            margin: 10px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg">
+            <div class="navbar-brand">
+                <img src="{{ url_for('static', filename='images/Logo1.png') }}" alt="Logo">
+                Sproutify
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('search') }}">Plants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('tools') }}">Tools</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ml-auto">
+                <a href="{{ url_for('userdetails')}}">
+                    <img src="{{ url_for('static', filename='images/Usericon1.jpg') }}" alt="Sign Up" class="user-icon">
+                </a>
+            </div>
+    </nav>
+    <div class="container">
+        <h1>Gardening Tools</h1>
+        <div class="tool-grid">
+            <!-- Tool items (repeat for each tool with unique IDs and data attributes) -->
+            <div class="tool-item" onclick="showPopup(0)" data-id="0">
+                <img src="{{ url_for('static', filename='images/Automatic Plant Watering System.webp') }}" alt="Automatic Plant Watering System">
+                <h3>Automatic Plant Watering System</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(1)" data-id="1">
+                <img src="{{ url_for('static', filename='images/Soil pH Tester.jpg') }}" alt="Soil pH Tester">
+                <h3>Soil pH Tester</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(2)" data-id="2">
+                <img src="{{ url_for('static', filename='images/Smart Garden Sensor.webp') }}" alt="Smart Garden Sensor">
+                <h3>Smart Garden Sensor</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(3)" data-id="3">
+                <img src="{{ url_for('static', filename='images/Automatic Drip Irrigation System.jpg') }}" alt="Automatic Drip Irrigation System">
+                <h3>Automatic Drip Irrigation System</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(4)" data-id="4">
+                <img src="{{ url_for('static', filename='images/Weather Station.jpg') }}" alt="Weather Station">
+                <h3>Weather Station</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(5)" data-id="5">
+                <img src="{{ url_for('static', filename='images/Electric Pruning Shears.jpg') }}" alt="Electric Pruning Shears">
+                <h3>Electric Pruning Shears</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(6)" data-id="6">
+                <img src="{{ url_for('static', filename='images/Solar-Powered Garden Light.jpg') }}" alt="Solar-Powered Garden Light">
+                <h3>Solar-Powered Garden Light</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(7)" data-id="7">
+                <img src="{{ url_for('static', filename='images/Wi-Fi Sprinkler Controller.jpeg') }}" alt="Wi-Fi Sprinkler Controller">
+                <h3>Wi-Fi Sprinkler Controller</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(8)" data-id="8">
+                <img src="{{ url_for('static', filename='images/Garden Camera.jpg') }}" alt="Garden Camera">
+                <h3>Garden Camera</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(9)" data-id="9">
+                <img src="{{ url_for('static', filename='images/Compost Temperature Probe.jpg') }}" alt="Compost Temperature Probe">
+                <h3>Compost Temperature Probe</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(10)" data-id="10">
+                <img src="{{ url_for('static', filename='images/Self-Watering Planter.jpg') }}" alt="Self-Watering Planter">
+                <h3>Self-Watering Planter</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(11)" data-id="11">
+                <img src="{{ url_for('static', filename='images/Automatic Lawn Mower.jpg') }}" alt="Automatic Lawn Mower">
+                <h3>Automatic Lawn Mower</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(12)" data-id="12">
+                <img src="{{ url_for('static', filename='images/Solar-Powered Mosquito Repellent Light.jpg') }}" alt="Solar-Powered Mosquito Repellent Light">
+                <h3>Solar-Powered Mosquito Repellent Light</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(13)" data-id="13">
+                <img src="{{ url_for('static', filename='images/UV Plant Grow Light.jpg') }}" alt="UV Plant Grow Light">
+                <h3>UV Plant Grow Light</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(14)" data-id="14">
+                <img src="{{ url_for('static', filename='images/Smart Garden Irrigation Kit.jpeg') }}" alt="Smart Garden Irrigation Kit">
+                <h3>Smart Garden Irrigation Kit</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(15)" data-id="15">
+                <img src="{{ url_for('static', filename='images/Garden Humidity Sensor.jpg') }}" alt="Garden Humidity Sensor">
+                <h3>Garden Humidity Sensor</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(16)" data-id="16">
+                <img src="{{ url_for('static', filename='images/Digital Fertilizer Spreader.jpg') }}" alt="Digital Fertilizer Spreader">
+                <h3>Digital Fertilizer Spreader</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(17)" data-id="17">
+                <img src="{{ url_for('static', filename='images/Smart Seed Planter.jpg') }}" alt="Smart Seed Planter">
+                <h3>Smart Seed Planter</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(18)" data-id="18">
+                <img src="{{ url_for('static', filename='images/Bluetooth Soil Moisture Sensor.jpg') }}" alt="Bluetooth Soil Moisture Sensor">
+                <h3>Bluetooth Soil Moisture Sensor</h3>
+            </div>
+            <div class="tool-item" onclick="showPopup(19)" data-id="19">
+                <img src="{{ url_for('static', filename='images/Smart Plant Identifier.jpg') }}" alt="Smart Plant Identifier">
+                <h3>Smart Plant Identifier</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3 id="popup-title"></h3>
+            <img id="popup-image" src="" alt="">
+            <p id="popup-description"></p>
+        </div>
+    </div>
+
+    <script>
+        // Tool data array
+        const tools = [
+            {
+                title: "Automatic Plant Watering System",
+                image: "{{ url_for('static', filename='images/Automatic Plant Watering System.webp') }}",
+                description: "An automated system to ensure your plants receive the right amount of water."
+            },
+            {
+                title: "Soil pH Tester",
+                image: "{{ url_for('static', filename='images/Soil pH Tester.jpg') }}",
+                description: "Test the pH level of your soil for optimal plant health."
+            },
+            {
+                title: "Smart Garden Sensor",
+                image: "{{ url_for('static', filename='images/Smart Garden Sensor.webp') }}",
+                description: "Sensors that monitor environmental conditions for your garden."
+            },
+            {
+                title: "Automatic Drip Irrigation System",
+                image: "{{ url_for('static', filename='images/Automatic Drip Irrigation System.jpg') }}",
+                description: "Efficient irrigation system that waters plants directly at the roots."
+            },
+            {
+                title: "Weather Station",
+                image: "{{ url_for('static', filename='images/Weather Station.jpg') }}",
+                description: "A station to keep track of weather conditions affecting your garden."
+            },
+            {
+                title: "Electric Pruning Shears",
+                image: "{{ url_for('static', filename='images/Electric Pruning Shears.jpg') }}",
+                description: "Easy to use electric shears for quick and efficient pruning."
+            },
+            {
+                title: "Solar-Powered Garden Light",
+                image: "{{ url_for('static', filename='images/Solar-Powered Garden Light.jpg') }}",
+                description: "Lights that charge during the day and illuminate your garden at night."
+            },
+            {
+                title: "Wi-Fi Sprinkler Controller",
+                image: "{{ url_for('static', filename='images/Wi-Fi Sprinkler Controller.jpeg') }}",
+                description: "Control your sprinkler system remotely using Wi-Fi."
+            },
+            {
+                title: "Garden Camera",
+                image: "{{ url_for('static', filename='images/Garden Camera.jpg') }}",
+                description: "Monitor your garden with a high-definition camera."
+            },
+            {
+                title: "Compost Temperature Probe",
+                image: "{{ url_for('static', filename='images/Compost Temperature Probe.jpg') }}",
+                description: "Monitor the temperature of your compost to ensure proper decomposition."
+            },
+            {
+                title: "Self-Watering Planter",
+                image: "{{ url_for('static', filename='images/Self-Watering Planter.jpg') }}",
+                description: "Planters that automatically water your plants."
+            },
+            {
+                title: "Automatic Lawn Mower",
+                image: "{{ url_for('static', filename='images/Automatic Lawn Mower.jpg') }}",
+                description: "Mowers that automatically cut your grass to the desired height."
+            },
+            {
+                title: "Solar-Powered Mosquito Repellent Light",
+                image: "{{ url_for('static', filename='images/Solar-Powered Mosquito Repellent Light.jpg') }}",
+                description: "Light that repels mosquitoes while providing illumination."
+            },
+            {
+                title: "UV Plant Grow Light",
+                image: "{{ url_for('static', filename='images/UV Plant Grow Light.jpg') }}",
+                description: "Special lights that help plants grow indoors."
+            },
+            {
+                title: "Smart Garden Irrigation Kit",
+                image: "{{ url_for('static', filename='images/Smart Garden Irrigation Kit.jpeg') }}",
+                description: "A complete kit for efficient garden irrigation."
+            },
+            {
+                title: "Garden Humidity Sensor",
+                image: "{{ url_for('static', filename='images/Garden Humidity Sensor.jpg') }}",
+                description: "Monitor humidity levels in your garden."
+            },
+            {
+                title: "Digital Fertilizer Spreader",
+                image: "{{ url_for('static', filename='images/Digital Fertilizer Spreader.jpg') }}",
+                description: "Spreader that allows for precise application of fertilizer."
+            },
+            {
+                title: "Smart Seed Planter",
+                image: "{{ url_for('static', filename='images/Smart Seed Planter.jpg') }}",
+                description: "Planter that ensures optimal spacing for seeds."
+            },
+            {
+                title: "Bluetooth Soil Moisture Sensor",
+                image: "{{ url_for('static', filename='images/Bluetooth Soil Moisture Sensor.jpg') }}",
+                description: "Monitor soil moisture levels using Bluetooth technology."
+            },
+            {
+                title: "Smart Plant Identifier",
+                image: "{{ url_for('static', filename='images/Smart Plant Identifier.jpg') }}",
+                description: "Identify plants using an app and a camera."
+            },
+        ];
+
+        function showPopup(index) {
+            const tool = tools[index];
+            document.getElementById('popup-title').textContent = tool.title;
+            document.getElementById('popup-image').src = tool.image;
+            document.getElementById('popup-description').textContent = tool.description;
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

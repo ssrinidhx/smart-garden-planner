@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sproutify - Gardening Made Easy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            background-color: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: black;
+            font-size: 2rem;
+            font-family: 'Lobster', cursive;
+        }
+        .navbar-brand img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .navbar .nav-link {
+            color: black !important;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .navbar-nav {
+            margin-left: 20px;
+        }
+        .navbar .btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar .btn:hover {
+            background-color: #218838;
+            box-shadow: 0px 4px 15px rgba(40, 167, 69, 0.6);
+        }
+        .caption-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .caption-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .caption-section p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        section {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        section p {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            height: 600px;
+        }
+        .mySlides {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;  
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .mySlides.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .slideshow-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .dot-container {
+            text-align: center;
+            padding: 10px;
+            background: #ddd;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active-dot, .dot:hover {
+            background-color: #717171;
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin: 50px 0;
+        }
+        .step-box {
+            width: 30%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .step-box:hover {
+            background-color: #e9f5e9; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly scale up on hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+        }
+        .step-number {
+            background-color: #28a745;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.5em;
+            margin: 0 auto 20px auto;
+            transition: background-color 0.3s ease; /* Smooth transition for step number */
+        }
+        .step-box:hover .step-number {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .step-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .step-content {
+            padding: 20px;
+        }
+        .step-content h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .step-content p {
+            font-size: 1em;
+            color: #5f5f5f;
+            line-height: 1.6em;
+        }
+        footer {
+            background-color: #28a745;
+            color: #fff;
+            padding: 20px 0;
+            font-family: Calibri, sans-serif;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center; /* Centers the content horizontally */
+            align-items: center;    /* Centers the content vertically */
+            padding: 20px 0;
+        }
+
+        .center-section {
+            text-align: center;     /* Ensures the text is centered */
+        }
+
+        .center-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .center-section p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .center-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .center-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            background-color: #28a745;
+            padding: 10px 0;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            color: #ffffff;
+            margin: 0;
+        }
+        .about-section {
+            padding: 20px; /* Adds space from the borders */
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Space between sections */
+        }
+
+        .about-home-gardening,
+        .about-us {
+            display: flex;
+            align-items: center;
+        }
+
+        .about-home-gardening {
+            justify-content: flex-start;
+        }
+
+        .about-us {
+            justify-content: flex-end;
+        }
+
+        .about-content {
+            width: 50%; /* Content only spans from left to middle */
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .about-home-gardening .about-content {
+            margin-right: 20px; /* Space between content and image */
+        }
+
+        .about-us .about-content {
+            margin-left: 20px; /* Space between image and content */
+            text-align: right; /* Align "About Us" content to the right */
+        }
+
+        .about-image {
+            width: 50%; /* Image spans from middle to the right */
+        }
+
+        .about-image img {
+            width: 100%; /* Image fills its container */
+            height: auto;
+            border-radius: 8px; /* Optional: Add rounded corners to the images */
+        }
+
+        .about-image1 img {
+            width: 90%; /* Image fills its container */
+            height: auto;
+            border-radius: 8px; /* Optional: Add rounded corners to the images */
+        }
+
+        h2 {
+            font-size: xx-large;    /* Set the font size */
+            font-weight: bold;     /* Make the text bold */
+            margin-bottom: 10px;   /* Adds space below the heading */
+            text-align: center;    /* Center the text horizontally */
+            margin-top: 0;         /* Optional: remove any extra margin at the top */
+        }
+
+        .content {
+            margin: 0 auto;        /* Center the content container */
+            max-width: 800px;      /* Adjust the width based on your layout */
+            font-size: 18px;
+        }
+
+        p {
+            margin: 0; /* Removes extra margin from the paragraph */
+        }
+
+        .user-icon {
+            width: 90px; /* Adjust the width of the image */
+            height: 70px; /* Adjust the height of the image */
+            cursor: pointer; /* Show pointer on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='images/Logo1.png') }}" alt="Logo">
+            Sproutify
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#discover">Discover</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about-us">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact-us">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+        <div class="ml-auto">
+            <a href="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/Usericon1.jpg') }}" alt="Login" class="user-icon">
+            </a>
+        </div>
+    </nav>
+    <section class="caption-section">
+        <h1>Welcome to Sproutify</h1>
+        <p>Your guide to effortless and sustainable gardening.</p>
+    </section>
+    <div class="slideshow-container">
+        <div class="mySlides active">
+            <img src="{{ url_for('static', filename='images/Slide1.jpg') }}" alt="Slide 1">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide2.jpg') }}" alt="Slide 2">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide3.webp') }}" alt="Slide 3">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide4.jpg') }}" alt="Slide 4">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide5.jpg') }}" alt="Slide 5">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide6.png') }}" alt="Slide 6">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='images/Slide7.jpeg') }}" alt="Slide 7">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div class="dot-container">
+        <span class="dot active-dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+    </div>
+    <div class="steps-container">
+        <div class="step-box">
+            <div class="step-image">
+                <img src="{{ url_for('static', filename='images/Identify2.webp') }}" alt="Step 1 Image">
+            </div>
+            <div class="step-content">
+                <div class="step-number">
+                    <span>1</span>
+                </div>
+                <h3>Identify the Right Plant</h3>
+                <p>Select the plant that is best suited to your environment and soil. Proper planning is key to ensuring a healthy yield.</p>
+            </div>
+        </div>
+        <div class="step-box">
+            <div class="step-image">
+                <img src="{{ url_for('static', filename='images/Monitoring.jpeg') }}" alt="Step 2 Image">
+            </div>
+            <div class="step-content">
+                <div class="step-number">
+                    <span>2</span>
+                </div>
+                <h3>Monitor Plant Growth</h3>
+                <p>Monitor the growth stages, ensuring the right conditions like sunlight and water, to achieve a successful yield.</p>
+            </div>
+        </div>
+        <div class="step-box">
+            <div class="step-image">
+                <img src="{{ url_for('static', filename='images/Final2.jpg') }}" alt="Step 3 Image">
+            </div>
+            <div class="step-content">
+                <div class="step-number">
+                    <span>3</span>
+                </div>
+                <h3>Enjoy the Blossoming Results</h3>
+                <p>Harvest your plants once they've matured, ensuring they are at their peak for the best yield and quality.</p>
+            </div>
+        </div>
+    </div> 
+    <div class="about-section", id="discover">
+        <div class="about-home-gardening">
+            <div class="about-content">
+                <h2>Know More</h2>
+                <p style="margin-bottom: 20px; line-height: 1.8;">Home gardening is a fulfilling practice where individuals grow plants like flowers, herbs, and vegetables in their own spaces. It enhances the beauty of a home, provides fresh produce, and promotes sustainability. Whether you have a large yard or a small balcony, home gardening offers a peaceful connection to nature and a rewarding way to grow your own food. It’s a great way to relax, stay active, and enjoy the benefits of your hard work!</p>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/HomeGardening.webp') }}" alt="Home Gardening Image">
+            </div>
+        </div>
+    
+        <div class="about-us", id="about-us">
+            <div class="about-image1">
+                <img src="{{ url_for('static', filename='images/Sproutify.png') }}" alt="About Us Image">
+            </div>
+            <div class="content">
+                <h2>About Us</h2>
+                <p style="margin-bottom: 20px; line-height: 1.8;">Sproutify is an innovative online platform designed to help gardening enthusiasts optimize their plant care and gardening schedules. Users can input their plant preferences to receive tailored recommendations for suitable plants and gardening tasks. The website features an interactive garden planner that allows users to plan planting schedules based on seasonal data. Additionally, Sproutify offers reminders for watering, ensuring that users can maintain healthy plants with ease. With a user-friendly interface, Sproutify aims to make gardening accessible and enjoyable for both beginners and experienced gardeners alike.</p>
+            </div>
+        </div>
+    </div>    
+    <footer>
+        <div class="footer-content">
+            <div class="center-section" id="contact-us">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@sproutify.com">support@sproutify.com</a></p>
+                <p>Phone: +7 (475) 367-5274</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sproutify | All rights reserved.</p>
+        </div>
+    </footer>         
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom Slideshow Script -->
+    <script>
+        var slideIndex = 0;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides();
+        }
+        function currentSlide(n) {
+            slideIndex = n - 1;
+            showSlides();
+        }
+        function showSlides() {
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                dots[i].classList.remove("active-dot");
+            }
+            slideIndex = (slideIndex >= slides.length) ? 0 : slideIndex;
+            slides[slideIndex].classList.add("active");
+            dots[slideIndex].classList.add("active-dot");
+        }
+        setInterval(function() {
+            plusSlides(1);
+        }, 3000); 
+    </script>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
